@@ -156,13 +156,13 @@ return [
             'submenu' => [
                 [
                     'text' => ' Agregar medicamento',
-                    'url' => '/medicamentos',
+                    'url' => '/medicamentos/create',
                     'icon' => 'ti ti-article'
 
                 ],
                 [
                     'text' => ' Gestionar medicamentos',
-                    'url' => '/medicines',
+                    'url' => '/medicamentos',
                     'icon' => 'ti ti-article'
                 ]
             ]
