@@ -52,7 +52,7 @@
                         <div class="card-body border-bottom py-3">
                             <div class="d-flex">
                                 <div class="text-muted">
-                                    Show
+                                    Ver
                                     <div class="mx-2 d-inline-block">
                                         <input type="text" class="form-control form-control-sm" value="10" size="3"
                                                aria-label="Invoices count">
@@ -60,7 +60,7 @@
                                     entries
                                 </div>
                                 <div class="ms-auto text-muted">
-                                    Search:
+                                    Buscar:
                                     <div class="ms-2 d-inline-block">
                                         <input type="text" class="form-control form-control-sm"
                                                aria-label="Search invoice">
@@ -84,7 +84,7 @@
                                             <polyline points="6 15 12 9 18 15"/>
                                         </svg>
                                     </th>
-                                    
+
 										<th>Imagen</th>
 										<th>Nombre</th>
 										<th>Codigo</th>
@@ -106,8 +106,11 @@
                                         <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                                    aria-label="Select medicamento"></td>
                                         <td>{{ ++$i }}</td>
-                                        
-											<td>{{ $medicamento->imagen }}</td>
+
+											<td>
+                                                {{-- {{ $medicamento->imagen }}  --}}
+                                                <img src="{{ asset($medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="150">
+                                            </td>
 											<td>{{ $medicamento->nombre }}</td>
 											<td>{{ $medicamento->codigo }}</td>
 											<td>{{ $medicamento->categoria }}</td>
@@ -128,7 +131,7 @@
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item"
                                                            href="{{ route('medicamentos.show',$medicamento->id) }}">
-                                                            Ver a Detalle 
+                                                            Ver a Detalle
                                                         </a>
                                                         <a class="dropdown-item"
                                                            href="{{ route('medicamentos.edit',$medicamento->id) }}">
@@ -152,7 +155,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <td>No Data Found</td>
+                                    <td>No hay regitros Ingresados</td>
                                 @endforelse
                                 </tbody>
 

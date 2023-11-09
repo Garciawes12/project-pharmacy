@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\ValidationException;
+
 
 use App\Models\Medicamento;
 use Illuminate\Http\Request;
@@ -45,15 +47,25 @@ class MedicamentoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Medicamento::$rules);
+        $request->validate(Medicamento::$rules);
 
-        $medicamento = Medicamento::create($request->all());
-        
+        $medicamento = new Medicamento;
+        $medicamento->fill($request->except('imagen')); // Llenar el modelo con todos los campos excepto 'imagen'
 
-        
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+        $file = $request->file('imagen');
+        $destinationPath = 'images/featureds';
+        $filename = time() . "-" . $file->getClientOriginalName();
+        $file->move($destinationPath, $filename);
+        $medicamento->imagen = $destinationPath . '/' . $filename;
+    }
 
-        return redirect()->route('medicamentos.index')
-            ->with('success', 'Medicamento created successfully.');
+    $medicamento->save();
+
+    return redirect()->route('medicamentos.index')
+        ->with('success', 'Medicamento creado exitosamente.');
+
+
     }
 
     /**

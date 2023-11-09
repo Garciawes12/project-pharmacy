@@ -3,12 +3,10 @@
 {{ Form::model($medicamento, ['url' => '/medicamentoController', 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
     <label class="form-label">{{ Form::label('imagen') }}</label>
     <div>
-        <img src="{{ asset('public/images' . $medicamento->imagen) }}" alt="Imagen actual">
         <input type="file" name="imagen" class="form-control-file">
         {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
         <small class="form-hint">medicamento <b>imagen</b> instruction.</small>
     </div>
-{
 </div>
 
 <div class="form-group mb-3">
