@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'title' => 'Farmacia-FLEA',
+    'title' => 'FLEA',
     'title_prefix' => '',
     'title_postfix' => '',
     'bottom_title' => 'Tablar',
@@ -42,7 +42,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'assets/logo.svg',
+            'path' => 'assets/logoflea.jpg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -60,14 +60,14 @@ return [
     |
     */
 
-    'layout_topnav' => false,
+    'layout_topnav' => true,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_light_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
-    'layout_class' => 'default', //layout-fluid, layout-boxed, default is also available
+    'layout_class' => 'layout-fluid', //layout-fluid, layout-boxed, default is also available
 
     /*
     |--------------------------------------------------------------------------
@@ -150,13 +150,13 @@ return [
             'url' => '#'
         ],
         [
-            'text' => 'Control de inventario',
+            'text' => 'Inventario',
             'icon' => 'ti ti-building-warehouse',
             'url' => '#',
             'submenu' => [
                 [
                     'text' => ' Agregar medicamento',
-                    'url' => '/medicines',
+                    'url' => '/medicamentos',
                     'icon' => 'ti ti-article'
 
                 ],
@@ -184,6 +184,33 @@ return [
                     'icon' => 'ti ti-pencil'
                 ]
             ]
+        ],
+        [
+            'text' => 'Cliente ventas',
+            'icon' => 'ti ti-report-money',
+            'url' => '#'
+        ],
+        [
+            'text' => 'Reportes',
+            'icon' => 'ti ti-file-description',
+            'url' => '#',
+            'submenu' =>[
+                [
+                    'text' => 'Reporte exitencias',
+                    'url' => '#',
+                    'icon' => 'ti ti-plus'
+                ],
+                [
+                    'text' => 'Reporte Salidas',
+                    'url' => '#',
+                    'icon' => 'ti ti-pencil'
+                ]
+            ]
+        ],
+        [
+            'text' => 'Ayuda',
+            'icon' => 'ti ti-help',
+            'url' => '#'
         ],
 
         // [

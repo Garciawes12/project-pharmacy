@@ -26,7 +26,7 @@
                         <label class="form-label">
                             Contraseña
                             <span class="form-label-description">
-                    <a href="{{route('password.request')}}">I forgot password</a>
+                    <a href="{{route('password.request')}}">Olvide la contraseña</a>
                   </span>
                         </label>
                         <div class="input-group input-group-flat">
@@ -45,7 +45,7 @@
                     <div class="mb-2">
                         <label class="form-check">
                             <input type="checkbox" class="form-check-input"/>
-                            <span class="form-check-label">Remember me on this device</span>
+                            <span class="form-check-label">Recuérdame en este dispositivo</span>
                         </label>
                     </div>
                     <div class="form-footer">

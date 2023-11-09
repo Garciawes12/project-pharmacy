@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->id();
-            $table->string('imagen')->nullable();
+            $table->string('imagen');
             $table->string('nombre');
-            $table->string('categoria');
-            $table->string('proveedor');
-            $table->decimal('precio_compra', 8, 2);
-            $table->decimal('precio_venta', 8, 2);
-            $table->date('fecha_vencimiento');
+            $table->string('codigo'); // Código del Medicamento
+            $table->text('categoria'); // Descripción
+            $table->string('unidad_medida'); // Unidad de Medida
+            $table->integer('cantidad_stock'); // Cantidad en Stock
+            $table->date('fecha_caducidad'); // Fecha de Caducidad
+            $table->decimal('precio_compra', 8, 2); 
+            $table->decimal('precio_venta', 8, 2); 
+            $table->string('proveedor'); // Proveedor
             $table->timestamps();
         });
     }
