@@ -1,12 +1,25 @@
 
 <div class="form-group mb-3">
-{{ Form::model($medicamento, ['url' => '/medicamentoController', 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
-    <label class="form-label">{{ Form::label('imagen') }}</label>
-    <div>
-        <input type="file" name="imagen" class="form-control-file">
-        {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>imagen</b> instruction.</small>
-    </div>
+    @if($medicamento->exists)
+    {{ Form::model($medicamento, ['route' => ['medicamentos.update', $medicamento->id], 'method' => 'put', 'enctype' => 'multipart/form-data']) }}
+@else
+    {{ Form::model(['route' => 'medicamentos.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
+@endif
+
+<label class="form-label">{{ Form::label('imagen', 'Imagen') }}</label>
+
+@if ($medicamento->exists && $medicamento->imagen)
+    <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="Imagen actual" width="350">
+    <p>Selecciona otra imagen para actualizar.</p>
+@endif
+
+<div>
+    {{ Form::file('imagen', ['class' => 'form-control-file']) }}
+    {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+    <small class="form-hint">Instrucciones sobre la imagen del medicamento.</small>
+</div>
+
+
 </div>
 
 <div class="form-group mb-3">
@@ -30,10 +43,15 @@
 <div class="form-group mb-3">
     <label class="form-label">   {{ Form::label('categoria') }}</label>
     <div>
-        {{ Form::text('categoria', $medicamento->categoria, ['class' => 'form-control' .
-        ($errors->has('categoria') ? ' is-invalid' : ''), 'placeholder' => 'Categoria']) }}
+        {{ Form::select('categoria', [
+            'TABLETA' => 'tableta',
+            'JARABE' => 'jarabe',
+            'INYECCION' => 'Inyección',
+            'CREMA' => 'Crema',
+            'UNGUENTO' => 'Ungüento',
+        ], $medicamento->categoria, ['class' => 'form-control' . ($errors->has('categoria') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria']) }}
         {!! $errors->first('categoria', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>categoria</b> instruction.</small>
+        <small class="form-hint">Medicamento <b>categoria</b> instruction.</small>
     </div>
 </div>
 <div class="form-group mb-3">
@@ -91,11 +109,12 @@
     </div>
 </div>
 
-    <div class="form-footer">
-        <div class="text-end">
-            <div class="d-flex">
-                <a href="#" class="btn btn-danger">Cancelar</a>
-                <button type="submit" class="btn btn-primary ms-auto ajax-submit">Guardar</button>
-            </div>
+<div class="form-footer">
+    <div class="text-end">
+        <div class="d-flex">
+            <a href="{{asset('/medicamentos')}}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary ms-auto ajax-submit">Guardar</button>
         </div>
     </div>
+</div>
+

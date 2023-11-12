@@ -108,8 +108,8 @@
                                         <td>{{ ++$i }}</td>
 
 											<td>
-                                                {{-- {{ $medicamento->imagen }}  --}}
-                                                <img src="{{ asset($medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="150">
+                                                {{-- {{ $medicamento->imagen }} --}}
+                                                <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="250">
                                             </td>
 											<td>{{ $medicamento->nombre }}</td>
 											<td>{{ $medicamento->codigo }}</td>

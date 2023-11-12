@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 /**
  * Class MedicamentoController
  * @package App\Http\Controllers
@@ -49,18 +52,19 @@ class MedicamentoController extends Controller
     {
         $request->validate(Medicamento::$rules);
 
-        $medicamento = new Medicamento;
-        $medicamento->fill($request->except('imagen')); // Llenar el modelo con todos los campos excepto 'imagen'
+         $medicamento = new Medicamento;
+         $medicamento->fill($request->all());
 
-        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+    // Guardar la imagen si se ha subido una
+    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
         $file = $request->file('imagen');
         $destinationPath = 'images/featureds';
         $filename = time() . "-" . $file->getClientOriginalName();
-        $file->move($destinationPath, $filename);
+        $file->storeAs($destinationPath, $filename, 'public');
         $medicamento->imagen = $destinationPath . '/' . $filename;
     }
 
-    $medicamento->save();
+     $medicamento->save();
 
     return redirect()->route('medicamentos.index')
         ->with('success', 'Medicamento creado exitosamente.');
@@ -103,12 +107,28 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, Medicamento $medicamento)
     {
-        request()->validate(Medicamento::$rules);
+        $request->validate(Medicamento::$rules);
 
-        $medicamento->update($request->all());
+    $medicamento->fill($request->all());
 
-        return redirect()->route('medicamentos.index')
-            ->with('success', 'Medicamento updated successfully');
+    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+        // Elimina la imagen anterior si existe
+        if (!empty($medicamento->imagen) && Storage::disk('public')->exists($medicamento->imagen)) {
+            Storage::disk('public')->delete($medicamento->imagen);
+        }
+
+        // Guarda la nueva imagen
+        $file = $request->file('imagen');
+        $destinationPath = 'images/featureds';
+        $filename = time() . "-" . $file->getClientOriginalName();
+        $file->storeAs($destinationPath, $filename, 'public');
+        $medicamento->imagen = $destinationPath . '/' . $filename;
+    }
+
+    $medicamento->save();
+
+    return redirect()->route('medicamentos.index')
+        ->with('success', 'Medicamento actualizado exitosamente.');
     }
 
     /**
