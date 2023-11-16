@@ -27,6 +27,7 @@ class MedicamentoController extends Controller
     {
         $medicamentos = Medicamento::paginate(10);
 
+
         return view('medicamento.index', compact('medicamentos'))
             ->with('i', (request()->input('page', 1) - 1) * $medicamentos->perPage());
     }

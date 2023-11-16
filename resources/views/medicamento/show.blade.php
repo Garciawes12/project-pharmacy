@@ -45,16 +45,18 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Medicamento Details</h3>
+                            <h3 class="card-title">Detalle de medicamento</h3>
                         </div>
                         <div class="card-body">
-                            
+
 <div class="form-group">
-<strong>Imagen:</strong>
-{{ $medicamento->imagen }}
+<img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="250">
+<p>Imagen </p>
+{{-- {{$medicamento->imagen}} --}}
 </div>
+
 <div class="form-group">
-<strong>Nombre:</strong>
+<strong>Nombre: </strong>
 {{ $medicamento->nombre }}
 </div>
 <div class="form-group">

@@ -1,4 +1,6 @@
-<a href="#">
-    <img src="{{asset('assets/flealogo.jpg')}}" width="120" height="35" alt="Tabler"
-         class="navbar-brand-image">
+<a href="#" style="text-decoration: none; font-family:cursive">
+    <a href="" class="navbar-brand navbar-brand-autodark">
+        <img src="{{asset('logo2.jpeg')}}" width="70" alt="" class="rounded">
+    </a>
+    {{-- FARMACIA FLEA --}}
 </a>

@@ -5,7 +5,7 @@
         <div class="text-center mb-1 mt-5">
             {{-- <h2>FARMACIA FLEA</h2> --}}
             <a href="" class="navbar-brand navbar-brand-autodark">
-                <img src="{{asset('assets/flealogo.jpg')}}" height="66"
+                <img src="{{asset('logo2.jpeg')}}" width="70"
                      alt="" class="rounded"></a>
         </div>
         <div class="card card-md">

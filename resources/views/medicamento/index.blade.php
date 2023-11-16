@@ -57,7 +57,7 @@
                                         <input type="text" class="form-control form-control-sm" value="10" size="3"
                                                aria-label="Invoices count">
                                     </div>
-                                    entries
+                                    entradas
                                 </div>
                                 <div class="ms-auto text-muted">
                                     Buscar:
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="table-responsive min-vh-100">
-                            <table class="table card-table table-vcenter text-nowrap datatable">
+                            <table class="table card-table table-vcenter text-nowrap datatable table-row-ancha">
                                 <thead>
                                 <tr>
                                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
@@ -109,7 +109,7 @@
 
 											<td>
                                                 {{-- {{ $medicamento->imagen }} --}}
-                                                <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="250">
+                                                <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="{{$medicamento->title}}" class="img-fluid rounded-2" width="350">
                                             </td>
 											<td>{{ $medicamento->nombre }}</td>
 											<td>{{ $medicamento->codigo }}</td>
