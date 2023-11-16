@@ -100,6 +100,14 @@
     </div>
 </div>
 <div class="form-group mb-3">
+    <label class="form-label">   {{ Form::label('precio_venta_unidad') }}</label>
+    <div>
+        {{ Form::text('precio_venta_unidad', $medicamento->precio_venta, ['class' => 'form-control' .
+        ($errors->has('precio_venta_unidad') ? ' is-invalid' : ''), 'placeholder' => 'Precio Venta por unidad']) }}
+        {!! $errors->first('precio_venta_unidad', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+</div>
+<div class="form-group mb-3">
     <label class="form-label">   {{ Form::label('proveedor') }}</label>
     <div>
         {{ Form::text('proveedor', $medicamento->proveedor, ['class' => 'form-control' .

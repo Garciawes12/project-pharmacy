@@ -88,6 +88,10 @@
 {{ $medicamento->precio_venta }}
 </div>
 <div class="form-group">
+    <strong>Precio Venta por unidad:</strong>
+    {{ $medicamento->precio_venta_unidad }}
+    </div>
+<div class="form-group">
 <strong>Proveedor:</strong>
 {{ $medicamento->proveedor }}
 </div>

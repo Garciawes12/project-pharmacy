@@ -94,6 +94,7 @@
 										<th>Fecha Caducidad</th>
 										<th>Precio Compra</th>
 										<th>Precio Venta</th>
+                                        <th>Precio venta unidad</th>
 										<th>Proveedor</th>
 
                                     <th class="w-1"></th>
@@ -119,6 +120,7 @@
 											<td>{{ $medicamento->fecha_caducidad }}</td>
 											<td>{{ $medicamento->precio_compra }}</td>
 											<td>{{ $medicamento->precio_venta }}</td>
+                                            <td>{{ $medicamento->precio_venta_unidad }}</td>
 											<td>{{ $medicamento->proveedor }}</td>
 
                                         <td>

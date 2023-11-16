@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Detalle del medicamento</h3>
-                            <button type="submit" class="btn btn-primary ms-auto ajax-submit">Guardar</button>
+
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('medicamentos.store') }}" id="ajaxForm" role="form"

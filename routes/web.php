@@ -30,3 +30,4 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 
 Route::resource('/medicamentos', MedicamentoController::class);
 Route::resource('/medicamentos/cretate', 'MedicamentoController@create');
+Route::resource('/proveedore', App\Http\Controllers\ProveedoreController::class);

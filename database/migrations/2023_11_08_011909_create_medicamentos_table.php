@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('unidad_medida'); // Unidad de Medida
             $table->integer('cantidad_stock'); // Cantidad en Stock
             $table->date('fecha_caducidad'); // Fecha de Caducidad
-            $table->decimal('precio_compra', 8, 2); 
-            $table->decimal('precio_venta', 8, 2); 
-            $table->string('proveedor'); // Proveedor
+            $table->decimal('precio_compra', 8, 2);
+            $table->decimal('precio_venta', 8, 2);
+            $table->decimal('precio_venta_unidad', 8, 2);
+            $table->string('proveedor')->foreign('proveedor_id')->references('id')->on('proveedores'); // Proveedor
             $table->timestamps();
         });
     }
