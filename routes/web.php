@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\MedicamentoController;
-use App\Http\Controllers\MedicineController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProveedoreController;
+use App\Http\Controllers\IngresoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Route as RouteFacade;
@@ -27,7 +27,11 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+//agregar y modificar medicamentos
 Route::resource('/medicamentos', MedicamentoController::class);
 Route::resource('/medicamentos/cretate', 'MedicamentoController@create');
-Route::resource('/proveedore', App\Http\Controllers\ProveedoreController::class);
+
+//agregar y modificar proveedores
+Route::resource('/proveedores', ProveedoreController::class);
+//campo de ingresos
+Route::resource('/ingresos', IngresoController::class);

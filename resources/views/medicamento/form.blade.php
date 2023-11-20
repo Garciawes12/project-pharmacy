@@ -28,7 +28,7 @@
         {{ Form::text('nombre', $medicamento->nombre, ['class' => 'form-control' .
         ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
         {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>nombre</b> instruction.</small>
+
     </div>
 </div>
 <div class="form-group mb-3">
@@ -37,7 +37,7 @@
         {{ Form::text('codigo', $medicamento->codigo, ['class' => 'form-control' .
         ($errors->has('codigo') ? ' is-invalid' : ''), 'placeholder' => 'Codigo']) }}
         {!! $errors->first('codigo', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>codigo</b> instruction.</small>
+
     </div>
 </div>
 <div class="form-group mb-3">
@@ -51,7 +51,6 @@
             'UNGUENTO' => 'Ungüento',
         ], $medicamento->categoria, ['class' => 'form-control' . ($errors->has('categoria') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria']) }}
         {!! $errors->first('categoria', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">Medicamento <b>categoria</b> instruction.</small>
     </div>
 </div>
 <div class="form-group mb-3">
@@ -60,7 +59,6 @@
         {{ Form::text('unidad_medida', $medicamento->unidad_medida, ['class' => 'form-control' .
         ($errors->has('unidad_medida') ? ' is-invalid' : ''), 'placeholder' => 'Unidad Medida']) }}
         {!! $errors->first('unidad_medida', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>unidad_medida</b> instruction.</small>
     </div>
 </div>
 <div class="form-group mb-3">
@@ -69,7 +67,6 @@
         {{ Form::text('cantidad_stock', $medicamento->cantidad_stock, ['class' => 'form-control' .
         ($errors->has('cantidad_stock') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Stock']) }}
         {!! $errors->first('cantidad_stock', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>cantidad_stock</b> instruction.</small>
     </div>
 </div>
 <div class="form-group mb-3">
@@ -78,7 +75,7 @@
         {{ Form::date('fecha_caducidad', $medicamento->fecha_caducidad, ['class' => 'form-control' .
         ($errors->has('fecha_caducidad') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Caducidad']) }}
         {!! $errors->first('fecha_caducidad', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>fecha_caducidad</b> instruction.</small>
+
     </div>
 </div>
 <div class="form-group mb-3">
@@ -87,7 +84,7 @@
         {{ Form::text('precio_compra', $medicamento->precio_compra, ['class' => 'form-control' .
         ($errors->has('precio_compra') ? ' is-invalid' : ''), 'placeholder' => 'Precio Compra']) }}
         {!! $errors->first('precio_compra', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>precio_compra</b> instruction.</small>
+
     </div>
 </div>
 <div class="form-group mb-3">
@@ -96,26 +93,39 @@
         {{ Form::text('precio_venta', $medicamento->precio_venta, ['class' => 'form-control' .
         ($errors->has('precio_venta') ? ' is-invalid' : ''), 'placeholder' => 'Precio Venta']) }}
         {!! $errors->first('precio_venta', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>precio_venta</b> instruction.</small>
+
     </div>
 </div>
 <div class="form-group mb-3">
-    <label class="form-label">   {{ Form::label('precio_venta_unidad') }}</label>
+    <label class="form-label">{{ Form::label('precio_venta_unidad') }}</label>
     <div>
-        {{ Form::text('precio_venta_unidad', $medicamento->precio_venta, ['class' => 'form-control' .
+        {{ Form::text('precio_venta_unidad', $medicamento->precio_venta_unidad, ['class' => 'form-control' .
         ($errors->has('precio_venta_unidad') ? ' is-invalid' : ''), 'placeholder' => 'Precio Venta por unidad']) }}
         {!! $errors->first('precio_venta_unidad', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>
 <div class="form-group mb-3">
-    <label class="form-label">   {{ Form::label('proveedor') }}</label>
+    <label class="form-label">Proveedor</label>
     <div>
-        {{ Form::text('proveedor', $medicamento->proveedor, ['class' => 'form-control' .
-        ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
+        <select name="proveedor" id="proveedor" class="form-control" placeholder="Seleccione un proveedor">
+            @foreach ($proveedores as $proveedor)
+                <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+            @endforeach
+        </select>
         {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</div>') !!}
-        <small class="form-hint">medicamento <b>proveedor</b> instruction.</small>
     </div>
 </div>
+
+{{-- <div class="col-md-3">
+    <div class="form-group mb-3">
+        <label class="form-label">{{ Form::label('proveedor') }}</label>
+        <div>
+            {{ Form::select('proveedor', $proveedores, $ingreso->proveedor_id, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un proveedor']) }}
+            {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</div>') !!}
+
+        </div>
+    </div>
+</div> --}}
 
 <div class="form-footer">
     <div class="text-end">

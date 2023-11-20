@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Medicamento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -21,12 +25,13 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // return view('home');
-        return response()->view('home');
+        $medicamentos = Medicamento::paginate(10);
+
+        return view('home', compact('medicamentos'));
 
     }
 }

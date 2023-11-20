@@ -147,7 +147,7 @@ return [
         [
             'text' => 'Inicio',
             'icon' => 'ti ti-home',
-            'url' => '#'
+            'url' => '/home'
         ],
         [
             'text' => 'Inventario',
@@ -169,18 +169,18 @@ return [
         ],
 
         [
-            'text' => 'Provedores',
-            'icon' => 'ti ti-users-group',
+            'text' => 'Compras',
+            'icon' => 'ti ti-shopping-cart',
             'url' => '#',
             'submenu' =>[
                 [
-                    'text' => 'Agregar Provedor',
-                    'url' => '#',
-                    'icon' => 'ti ti-plus'
+                    'text' => 'Proveedores',
+                    'url' => '/proveedores',
+                    'icon' => 'ti ti-shopping-cart'
                 ],
                 [
-                    'text' => 'Gestionar Provedores',
-                    'url' => '#',
+                    'text' => 'Ingresos',
+                    'url' => '/ingresos',
                     'icon' => 'ti ti-pencil'
                 ]
             ]

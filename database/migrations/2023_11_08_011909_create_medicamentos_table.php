@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('imagen');
             $table->string('nombre');
-            $table->string('codigo'); // Código del Medicamento
+            $table->string('codigo')->nullable()->default(null);// Código del Medicamento
             $table->text('categoria'); // Descripción
             $table->string('unidad_medida'); // Unidad de Medida
             $table->integer('cantidad_stock'); // Cantidad en Stock

@@ -1,7 +1,10 @@
 <?php
 
+
 namespace App\Http\Controllers;
 use App\Http\Controllers\ValidationException;
+use App\Models\Proveedore;
+
 
 
 use App\Models\Medicamento;
@@ -27,7 +30,6 @@ class MedicamentoController extends Controller
     {
         $medicamentos = Medicamento::paginate(10);
 
-
         return view('medicamento.index', compact('medicamentos'))
             ->with('i', (request()->input('page', 1) - 1) * $medicamentos->perPage());
     }
@@ -40,7 +42,8 @@ class MedicamentoController extends Controller
     public function create()
     {
         $medicamento = new Medicamento();
-        return view('medicamento.create', compact('medicamento'));
+        $proveedores = Proveedore::all();
+        return view('medicamento.create', compact('medicamento', 'proveedores'));
     }
 
     /**
@@ -53,23 +56,32 @@ class MedicamentoController extends Controller
     {
         $request->validate(Medicamento::$rules);
 
-         $medicamento = new Medicamento;
-         $medicamento->fill($request->all());
+        // Retrieve the selected supplier
+        $proveedor = Proveedore::find($request->input('proveedor'));
 
-    // Guardar la imagen si se ha subido una
-    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
-        $file = $request->file('imagen');
-        $destinationPath = 'images/featureds';
-        $filename = time() . "-" . $file->getClientOriginalName();
-        $file->storeAs($destinationPath, $filename, 'public');
-        $medicamento->imagen = $destinationPath . '/' . $filename;
-    }
+        // Check if the supplier exists
+        if (!$proveedor) {
+            return redirect()->route('medicamentos.create')
+                ->with('error', 'Proveedor no encontrado.');
+        }
 
-     $medicamento->save();
+        // Create the medication and associate the supplier
+        $medicamento = new Medicamento($request->all());
+        $medicamento->proveedore()->associate($proveedor);
 
-    return redirect()->route('medicamentos.index')
-        ->with('success', 'Medicamento creado exitosamente.');
+        // Save the image if one has been uploaded
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            $file = $request->file('imagen');
+            $destinationPath = 'images/featureds';
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $file->storeAs($destinationPath, $filename, 'public');
+            $medicamento->imagen = $destinationPath . '/' . $filename;
+        }
 
+        $medicamento->save();
+
+        return redirect()->route('medicamentos.index')
+            ->with('success', 'Medicamento creado exitosamente.');
 
     }
 

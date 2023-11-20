@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Medicamento extends Model
 {
-    
+
     static $rules = [
 		'imagen' => 'required',
 		'nombre' => 'required',
@@ -49,6 +49,9 @@ class Medicamento extends Model
      */
     protected $fillable = ['imagen','nombre','codigo','categoria','unidad_medida','cantidad_stock','fecha_caducidad','precio_compra','precio_venta','proveedor'];
 
+    public function proveedore(){
+    return $this->belongsTo(Proveedore::class, 'proveedor_id');
+}
 
 
 }
