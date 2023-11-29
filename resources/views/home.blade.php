@@ -5,29 +5,11 @@
     <canvas id="myChart"></canvas>
   </div>
 
-  <div class="row col-6">
-    <canvas id="myChart2"></canvas>
+  <div class="col-6">
+    <canvas id="mySecondChart"></canvas>
   </div>
+</div>
 
-
-  {{-- <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Fecha Caducidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{-- @foreach ($medicamentos as $medicamento)
-        <tr>
-          <td>{{ $medicamento->nombre }}</td>
-          <td>{{ $medicamento->cantidad_stock }}</td>
-          <td>{{ $medicamento->fecha_caducidad }}</td>
-        </tr>
-      @endforeach
-    </tbody>
-  </table> --}}
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -60,6 +42,10 @@
         }
       }
     });
+
+    // segundo grafico
+
+
   </script>
 @endsection
 

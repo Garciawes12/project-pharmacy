@@ -1,26 +1,26 @@
-
 <div class="form-group mb-3">
-    @if($medicamento->exists)
-    {{ Form::model($medicamento, ['route' => ['medicamentos.update', $medicamento->id], 'method' => 'put', 'enctype' => 'multipart/form-data']) }}
-@else
-    {{ Form::model(['route' => 'medicamentos.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
-@endif
+    {{ Form::model($medicamento, [
+        'route' => $medicamento->exists ? ['medicamentos.update', $medicamento->id] : 'medicamentos.store',
+        'method' => $medicamento->exists ? 'put' : 'post',
+        'enctype' => 'multipart/form-data'
+    ]) }}
 
-<label class="form-label">{{ Form::label('imagen', 'Imagen') }}</label>
+    <label class="form-label">{{ Form::label('imagen', 'Imagen') }}</label>
 
-@if ($medicamento->exists && $medicamento->imagen)
-    <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="Imagen actual" width="350">
-    <p>Selecciona otra imagen para actualizar.</p>
-@endif
+    @if ($medicamento->exists && $medicamento->imagen)
+        <img src="{{ asset('storage/' . $medicamento->imagen) }}" alt="Imagen actual" width="350">
+        <p>Selecciona otra imagen para actualizar.</p>
+    @endif
 
-<div>
-    {{ Form::file('imagen', ['class' => 'form-control-file']) }}
-    {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
-    <small class="form-hint">Instrucciones sobre la imagen del medicamento.</small>
+    <div>
+        {{ Form::file('imagen', ['class' => 'form-control-file']) }}
+        {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+        <small class="form-hint">Instrucciones sobre la imagen del medicamento.</small>
+    </div>
 </div>
 
 
-</div>
+
 
 <div class="form-group mb-3">
     <label class="form-label">   {{ Form::label('nombre') }}</label>
@@ -72,7 +72,7 @@
 <div class="form-group mb-3">
     <label class="form-label">   {{ Form::label('fecha_caducidad') }}</label>
     <div>
-        {{ Form::date('fecha_caducidad', $medicamento->fecha_caducidad, ['class' => 'form-control' .
+        {{ Form::date('fecha_caducidad', $medicamento->fecha_caducidad, ['class' => 'form-control', 'style' => 'width:20%' .
         ($errors->has('fecha_caducidad') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Caducidad']) }}
         {!! $errors->first('fecha_caducidad', '<div class="invalid-feedback">:message</div>') !!}
 
@@ -108,7 +108,7 @@
     <label class="form-label">Proveedor</label>
     <div>
         <select name="proveedor" id="proveedor" class="form-control" placeholder="Seleccione un proveedor">
-            @foreach ($proveedores as $proveedor)
+            @foreach (\App\Models\Proveedore::all() as $proveedor)
                 <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
             @endforeach
         </select>
@@ -116,16 +116,7 @@
     </div>
 </div>
 
-{{-- <div class="col-md-3">
-    <div class="form-group mb-3">
-        <label class="form-label">{{ Form::label('proveedor') }}</label>
-        <div>
-            {{ Form::select('proveedor', $proveedores, $ingreso->proveedor_id, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un proveedor']) }}
-            {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</div>') !!}
 
-        </div>
-    </div>
-</div> --}}
 
 <div class="form-footer">
     <div class="text-end">

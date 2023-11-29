@@ -37,6 +37,7 @@ class Medicamento extends Model
 		'fecha_caducidad' => 'required',
 		'precio_compra' => 'required',
 		'precio_venta' => 'required',
+        'precio_venta_unidad'=> 'nullable',
 		'proveedor' => 'required',
     ];
 
@@ -47,10 +48,10 @@ class Medicamento extends Model
      *
      * @var array
      */
-    protected $fillable = ['imagen','nombre','codigo','categoria','unidad_medida','cantidad_stock','fecha_caducidad','precio_compra','precio_venta','proveedor'];
+    protected $fillable = ['imagen','nombre','codigo','categoria','unidad_medida','cantidad_stock','fecha_caducidad','precio_compra','precio_venta','precio_venta_unidad','proveedor'];
 
     public function proveedore(){
-    return $this->belongsTo(Proveedore::class, 'proveedor_id');
+    return $this->belongsTo(Proveedore::class, 'proveedor');
 }
 
 

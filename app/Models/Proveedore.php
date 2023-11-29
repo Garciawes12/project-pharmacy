@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Proveedore extends Model
 {
-    
+
     static $rules = [
     ];
 
@@ -34,6 +34,11 @@ class Proveedore extends Model
      * @var array
      */
     protected $fillable = ['tipo_documento','numero_documento','nombre','direccion','telefono','correo'];
+
+    public function proveedor()
+{
+    return $this->belongsTo(Proveedore::class, 'proveedor_id');
+}
 
 
 

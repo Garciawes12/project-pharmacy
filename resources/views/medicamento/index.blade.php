@@ -121,7 +121,7 @@
 											<td>{{ $medicamento->precio_compra }}</td>
 											<td>{{ $medicamento->precio_venta }}</td>
                                             <td>{{ $medicamento->precio_venta_unidad }}</td>
-											<td>{{ $medicamento->proveedor }}</td>
+											<td>{{ $medicamento->proveedore->nombre }}</td>
 
                                         <td>
                                             <div class="btn-list flex-nowrap">

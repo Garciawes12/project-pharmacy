@@ -120,28 +120,26 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, Medicamento $medicamento)
     {
-        $request->validate(Medicamento::$rules);
+        $request->validate([
+            // Agrega tus otras reglas de validación aquí
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-    $medicamento->fill($request->all());
+        $medicamento->fill($request->except('imagen'));
 
-    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
-        // Elimina la imagen anterior si existe
-        if (!empty($medicamento->imagen) && Storage::disk('public')->exists($medicamento->imagen)) {
-            Storage::disk('public')->delete($medicamento->imagen);
+        // Si se proporciona una nueva imagen, actualiza el campo de imagen
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            $file = $request->file('imagen');
+            $destinationPath = 'images/featureds';
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $file->storeAs($destinationPath, $filename, 'public');
+            $medicamento->imagen = $destinationPath . '/' . $filename;
         }
 
-        // Guarda la nueva imagen
-        $file = $request->file('imagen');
-        $destinationPath = 'images/featureds';
-        $filename = time() . "-" . $file->getClientOriginalName();
-        $file->storeAs($destinationPath, $filename, 'public');
-        $medicamento->imagen = $destinationPath . '/' . $filename;
-    }
+        $medicamento->save();
 
-    $medicamento->save();
-
-    return redirect()->route('medicamentos.index')
-        ->with('success', 'Medicamento actualizado exitosamente.');
+        return redirect()->route('medicamentos.index')
+            ->with('success', 'Medicamento actualizado exitosamente.');
     }
 
     /**

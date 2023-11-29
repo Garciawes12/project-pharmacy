@@ -186,9 +186,16 @@ return [
             ]
         ],
         [
-            'text' => 'Cliente ventas',
+            'text' => 'Ventas',
             'icon' => 'ti ti-report-money',
-            'url' => '#'
+            'url' => '#',
+            'submenu' =>[
+                [
+                    'text' => 'Clientes',
+                    'url' => '#',
+                    'icon' => 'ti ti-pencil'
+                ]
+            ]
         ],
         [
             'text' => 'Reportes',
